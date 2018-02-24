@@ -664,7 +664,26 @@ dataList.append(cenb)
 # 9 三角函数 sin,arcsin,degrees,cos,arccos,tan,arctan
 
 # 10 统计函数
-# 10.1
+# 10.1 amin()  amax() 查找最小值，最大值  nonzero()返回数组中非零元素的索引
+# 10.2 where() 返回数组中满足给定条件的元素的索引
+wha = np.arange(9.).reshape(3,3)
+dataList.append('where ===> 返回数组中满足给定条件的元素的索引-原始数据')
+dataList.append(wha)
+whb = np.where(wha>3)
+dataList.append('where ===> 返回数组中满足给定条件的元素的索引-返回数据')
+dataList.append(whb)  # 返回的索引是分开展示的，即横坐标为一个数组，纵坐标为一个数组
+dataList.append('where ===> 返回数组中满足给定条件的元素的索引-通过索引还原的数据')
+dataList.append(wha[whb])
+
+# 10.3 extract() 返回满足自定义条件的元素
+# 定义条件
+dataList.append('extract ===> 返回满足自定义条件的元素-原始数据')
+dataList.append(wha)
+condit = np.mod(wha,2) == 0
+dataList.append('extract ===> 返回满足自定义条件的元素-自定义的条件')
+dataList.append(condit)
+dataList.append('extract ===> 返回满足自定义条件的元素-根据条件返回的元素')
+dataList.append(np.extract(condit,wha))
 
 # 测试函数
 def testNumpy():
