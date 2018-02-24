@@ -646,6 +646,26 @@ dataList.append(cja)
 dataList.append('char.join ===> 多维数组在各个字符之间插入指定字符=返回数据')
 dataList.append(np.char.join([':','-'],cja))
 
+# 8.7 char.replace 替换字符
+crea = np.array(['hsn ily','caim ify'])
+dataList.append('char.replace ===> 替换指定的字符串-原始数据')
+dataList.append(crea)
+dataList.append('char.replace ===> 替换指定的字符串-返回数据')
+dataList.append(np.char.replace(crea,'l','f'))
+
+# 8.8 char.encode()编码   char.decode()解码
+cena = np.char.encode('hsnily','cp500')  # 将字符串的编码格式改为cp500
+dataList.append('char.encode ===> 指定编码为cp500')
+dataList.append(cena)
+cenb = np.char.decode(cena,'cp500')
+dataList.append('char.decode ===> 用cp500解码')
+dataList.append(cenb)
+
+# 9 三角函数 sin,arcsin,degrees,cos,arccos,tan,arctan
+
+# 10 统计函数
+# 10.1
+
 # 测试函数
 def testNumpy():
 
