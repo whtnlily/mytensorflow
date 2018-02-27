@@ -6,6 +6,8 @@ __date__ = "2018/01/17"
 import numpy as np
 from collections import Iterable
 from com.hsnily.utils import util
+import numpy.matlib
+from matplotlib import pyplot as plt
 
 '''
 本文件为numpy学习笔记
@@ -685,6 +687,79 @@ dataList.append(condit)
 dataList.append('extract ===> 返回满足自定义条件的元素-根据条件返回的元素')
 dataList.append(np.extract(condit,wha))
 
+# 10.4 id()返回python对象的通用标识符，类似c中的指针
+# 10.5 view()返回一个数组的副本，即浅拷贝，新数组和原数组的元素变化会互相影响，但新数组不能改变原数组的形状
+# 10.6 copy() 深拷贝,新数组与原数组互不影响
+# 10.7 matlib.identity()，返回给定大小的单位矩阵。单位矩阵是指主对角线元素都为1的方阵
+dataList.append('matlib.identity ===> 返回给定大小的单位矩阵,即主对角线元素全为1的矩阵')
+dataList.append(np.matlib.identity(5,dtype= float))
+
+# 10.8 matilb.rand() 返回给定大小的填充随机数的矩阵
+# 10.9 vdot() 返回两个向量的点积  inner()返回一维数组的向量内积。对于更高的维度，返回最后一个轴上的和的乘积
+# natmul() 返回两个数组的矩阵乘积
+# 10.10 linalg.det() 行列式，即矩阵的对角元素的乘积的差
+dataList.append('linalg.det() ===> 行列式即矩阵对角元素的乘积的差-原始数据')
+deta = np.array([[1,2],[3,4]])
+dataList.append(deta)
+dataList.append('linalg.det() ===> 行列式即矩阵对角元素的乘积的差-返回数据')
+dataList.append(np.linalg.det(deta))
+
+# 10.11 linalg.solve() 矩阵形式的线性方程的解
+# linalg.inv() 计算矩阵的逆。矩阵的逆：如果它乘以原始矩阵，则得到单位矩阵。
+
+# 11 matplotlib 是Python的绘图库。
+# bar() 绘制条形图
+# histogram() 绘制直方图
+# plt()将包含数据和bin数组的数组作为参数，并转换为直方图
+
+def matplotlibTest():
+    matTest3()
+
+def matTest3():
+    # 计算正弦和余弦曲线上的点x和y的坐标
+    x = np.arange(0,3 * np.pi,0.1)
+    y_sin = np.sin(x)
+    y_cos = np.cos(x)
+    # 建立subplot网格，高为2，宽为1
+    # 激活第一个subplot
+    plt.subplot(2,1,1)
+    # 绘制第一个图像
+    plt.plot(x,y_sin)
+    plt.title('sine')
+    # 将第二个subplot激活，并绘制第二个图像
+    plt.subplot(2,1,2)
+    plt.plot(x,y_cos)
+    plt.title('cosine')
+    # 展示图像
+    plt.show()
+
+def matTest2():
+    x = np.arange(0,3 * np.pi, 0.1)
+    y = np.sin(x)
+    plt.title("sing wave form")
+    plt.plot(x,y)
+    plt.show()
+
+def matTest1():
+    pltx = np.arange(1, 12)
+    plty = 2 * pltx + 5
+    plt.title("Matplotlib demo")
+    plt.xlabel("x axis caption")
+    plt.ylabel("y axis caption")
+    plt.plot(pltx, plty)
+    plt.show()
+
+# 12 numpy的IO操作，可以将ndarray对象保存到磁盘并可以从磁盘文件加载
+# load() 和 save() 函数处理numPy二进制文件(带npy扩展名)
+# loadtxt() 和 savetxt() 处理正常的文本文件,后缀名名为txt
+dataList.append('save() ===> 将输入数组存储在具有Npy扩展名的磁盘文件中-原始数据')
+saa = np.array([1,2,3,4,5])
+dataList.append(saa)
+np.save('outfile',saa)
+dataList.append('load() ===> 读取存储在具有Npy扩展名的磁盘文件中的数据')
+dataList.append(np.load('outfile.npy'))
+
+
 # 测试函数
 def testNumpy():
 
@@ -702,6 +777,8 @@ def testNumpy():
                     util.printData(data)
     else:
         print("data list is null")
+
+    # matplotlibTest()
 
 
 def copyTest():
